@@ -15,7 +15,7 @@ func _ready():
 	add_child(timer)
 
 func _check_role():
-	var client_number_node: ClientNumber = get_node("../../ClientNumber")
+	var client_number_node: ClientNumber = get_node("../../../ClientNumber")
 	if client_number_node:
 		is_publisher = (client_number == client_number_node.client_number)
 		
