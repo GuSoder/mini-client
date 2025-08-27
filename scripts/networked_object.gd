@@ -31,10 +31,43 @@ func publish():
 		"pos_z": position.z,
 		"rot_y": rotation.y
 	}
-	print("Publishing object ", object_index, ": ", data)
+	
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	
+	var json_string = JSON.stringify(data)
+	var headers = ["Content-Type: application/json"]
+	var url = "http://localhost:5000/object/" + str(object_index)
+	
+	http_request.request(url, headers, HTTPClient.METHOD_POST, json_string)
+	http_request.request_completed.connect(_on_publish_completed)
 
 func subscribe():
-	pass
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	
+	var url = "http://localhost:5000/object/" + str(object_index)
+	
+	http_request.request(url)
+	http_request.request_completed.connect(_on_subscribe_completed)
+
+func _on_publish_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
+	var sender = get_children().back()
+	if sender is HTTPRequest:
+		sender.queue_free()
+
+func _on_subscribe_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray):
+	if response_code == 200:
+		var json = JSON.new()
+		var parse_result = json.parse(body.get_string_from_utf8())
+		if parse_result == OK:
+			var data = json.data
+			if data.has("pos_x") and data.has("pos_y") and data.has("pos_z") and data.has("rot_y"):
+				set_position_rotation(data.pos_x, data.pos_y, data.pos_z, data.rot_y)
+	
+	var sender = get_children().back()
+	if sender is HTTPRequest:
+		sender.queue_free()
 
 func set_position_rotation(pos_x: float, pos_y: float, pos_z: float, rot_y: float):
 	position = Vector3(pos_x, pos_y, pos_z)
