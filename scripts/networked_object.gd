@@ -3,8 +3,11 @@ extends Node3D
 @export var client_number: int = 1
 
 var is_publisher: bool = false
+var object_index: int = 0
 
 func _ready():
+	object_index = get_index()
+	
 	var timer = Timer.new()
 	timer.wait_time = 0.01
 	timer.timeout.connect(_check_role)
@@ -28,6 +31,7 @@ func publish():
 		"pos_z": position.z,
 		"rot_y": rotation.y
 	}
+	print("Publishing object ", object_index, ": ", data)
 
 func subscribe():
 	pass
