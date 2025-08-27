@@ -4,32 +4,36 @@
 
 [node name="World" type="Node3D"]
 
-[node name="NetworkedObject1" type="Node3D" parent="."]
+[node name="Static" type="Node3D" parent="."]
+
+[node name="Networked" type="Node3D" parent="."]
+
+[node name="NetworkedObject1" type="Node3D" parent="Networked"]
 script = ExtResource("1_nnsk1")
 
-[node name="Controller" type="Node3D" parent="NetworkedObject1"]
+[node name="Controller" type="Node3D" parent="Networked/NetworkedObject1"]
 
-[node name="NetworkedObject2" type="Node3D" parent="."]
+[node name="NetworkedObject2" type="Node3D" parent="Networked"]
 script = ExtResource("1_nnsk1")
 
-[node name="Controller" type="Node3D" parent="NetworkedObject2"]
+[node name="Controller" type="Node3D" parent="Networked/NetworkedObject2"]
 
-[node name="NetworkedObject3" type="Node3D" parent="."]
+[node name="NetworkedObject3" type="Node3D" parent="Networked"]
 script = ExtResource("1_nnsk1")
 
-[node name="Controller" type="Node3D" parent="NetworkedObject3"]
+[node name="Controller" type="Node3D" parent="Networked/NetworkedObject3"]
 
-[node name="NetworkedObject4" type="Node3D" parent="."]
+[node name="NetworkedObject4" type="Node3D" parent="Networked"]
 script = ExtResource("1_nnsk1")
 
-[node name="Controller" type="Node3D" parent="NetworkedObject4"]
+[node name="Controller" type="Node3D" parent="Networked/NetworkedObject4"]
 
-[node name="NetworkedObject5" type="Node3D" parent="."]
+[node name="NetworkedObject5" type="Node3D" parent="Networked"]
 script = ExtResource("1_nnsk1")
 
-[node name="Controller" type="Node3D" parent="NetworkedObject5"]
+[node name="Controller" type="Node3D" parent="Networked/NetworkedObject5"]
 
-[node name="NetworkedObject6" type="Node3D" parent="."]
+[node name="NetworkedObject6" type="Node3D" parent="Networked"]
 script = ExtResource("1_nnsk1")
 
-[node name="Controller" type="Node3D" parent="NetworkedObject6"]
+[node name="Controller" type="Node3D" parent="Networked/NetworkedObject6"]
