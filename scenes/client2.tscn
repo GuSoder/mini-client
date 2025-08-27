@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5mcb8cwjatf0"]
+
+[ext_resource type="Script" uid="uid://6i7in1i1o0pq" path="res://scripts/client_number.gd" id="1_ht11x"]
+[ext_resource type="PackedScene" uid="uid://dxitf8of502cx" path="res://scenes/world.tscn" id="2_uj3pq"]
+
+[node name="Client" type="Node3D"]
+
+[node name="ClientNumber" type="Node3D" parent="."]
+script = ExtResource("1_ht11x")
+client_number = 2
+
+[node name="World" parent="." instance=ExtResource("2_uj3pq")]

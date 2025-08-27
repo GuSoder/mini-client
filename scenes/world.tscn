@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxitf8of502cx"]
+
+[ext_resource type="Script" uid="uid://cdfy7yfnpcgv6" path="res://scripts/networked_object.gd" id="1_nnsk1"]
+
+[node name="World" type="Node3D"]
+
+[node name="NetworkedObject1" type="Node3D" parent="."]
+script = ExtResource("1_nnsk1")
+
+[node name="Controller" type="Node3D" parent="NetworkedObject1"]
+
+[node name="NetworkedObject2" type="Node3D" parent="."]
+script = ExtResource("1_nnsk1")
+
+[node name="Controller" type="Node3D" parent="NetworkedObject2"]
+
+[node name="NetworkedObject3" type="Node3D" parent="."]
+script = ExtResource("1_nnsk1")
+
+[node name="Controller" type="Node3D" parent="NetworkedObject3"]
+
+[node name="NetworkedObject4" type="Node3D" parent="."]
+script = ExtResource("1_nnsk1")
+
+[node name="Controller" type="Node3D" parent="NetworkedObject4"]
+
+[node name="NetworkedObject5" type="Node3D" parent="."]
+script = ExtResource("1_nnsk1")
+
+[node name="Controller" type="Node3D" parent="NetworkedObject5"]
+
+[node name="NetworkedObject6" type="Node3D" parent="."]
+script = ExtResource("1_nnsk1")
+
+[node name="Controller" type="Node3D" parent="NetworkedObject6"]
