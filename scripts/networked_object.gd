@@ -49,7 +49,7 @@ func publish():
 	
 	var json_string = JSON.stringify(data)
 	var headers = ["Content-Type: application/json"]
-	var url = "http://localhost:5000/object/" + str(object_index)
+	var url = "http://207.154.222.143:5000/object/" + str(object_index)
 	
 	http_request.request(url, headers, HTTPClient.METHOD_POST, json_string)
 	http_request.request_completed.connect(_on_publish_completed)
@@ -58,7 +58,7 @@ func subscribe():
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	
-	var url = "http://localhost:5000/object/" + str(object_index)
+	var url = "http://207.154.222.143:5000/object/" + str(object_index)
 	
 	http_request.request(url)
 	http_request.request_completed.connect(_on_subscribe_completed)
