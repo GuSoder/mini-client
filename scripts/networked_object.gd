@@ -22,7 +22,16 @@ func _check_role():
 		subscribe()
 
 func publish():
-	pass
+	var data = {
+		"pos_x": position.x,
+		"pos_y": position.y, 
+		"pos_z": position.z,
+		"rot_y": rotation.y
+	}
 
 func subscribe():
 	pass
+
+func set_position_rotation(pos_x: float, pos_y: float, pos_z: float, rot_y: float):
+	position = Vector3(pos_x, pos_y, pos_z)
+	rotation.y = rot_y
