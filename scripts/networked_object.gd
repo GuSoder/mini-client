@@ -17,7 +17,15 @@ func _ready():
 func _check_role():
 	var client_number_node: ClientNumber = get_node("../../../ClientNumber")
 	if client_number_node:
-		is_publisher = (client_number == client_number_node.client_number)
+		var new_is_publisher = (client_number == client_number_node.client_number)
+		
+		# If role changed from publisher to subscriber, remove controller
+		if is_publisher and not new_is_publisher:
+			var controller = get_node_or_null("Controller")
+			if controller:
+				controller.queue_free()
+		
+		is_publisher = new_is_publisher
 		
 	if is_publisher:
 		publish()
