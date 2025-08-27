@@ -7,26 +7,26 @@ var object_index: int = 0
 
 func _ready():
 	object_index = get_index()
+	determine_role()
 	
 	var timer = Timer.new()
 	timer.wait_time = 0.01
-	timer.timeout.connect(_check_role)
+	timer.timeout.connect(_update)
 	timer.autostart = true
 	add_child(timer)
 
-func _check_role():
+func determine_role():
 	var client_number_node: ClientNumber = get_node("../../../ClientNumber")
 	if client_number_node:
-		var new_is_publisher = (client_number == client_number_node.client_number)
+		is_publisher = (client_number == client_number_node.client_number)
 		
-		# If role changed from publisher to subscriber, remove controller
-		if is_publisher and not new_is_publisher:
+		# Remove controller if this is a subscriber
+		if not is_publisher:
 			var controller = get_node_or_null("Controller")
 			if controller:
 				controller.queue_free()
-		
-		is_publisher = new_is_publisher
-		
+
+func _update():
 	if is_publisher:
 		publish()
 	else:
