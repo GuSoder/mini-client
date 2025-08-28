@@ -4,10 +4,12 @@ extends Node3D
 
 var is_publisher: bool = false
 var object_index: int = 0
+var target_pos: Vector3
 
 func _ready():
 	object_index = get_index()
 	determine_role()
+	target_pos = position
 	
 	var timer = Timer.new()
 	timer.wait_time = 0.01
@@ -31,6 +33,10 @@ func _update():
 		publish()
 	else:
 		subscribe()
+
+func _process(delta):
+	if not is_publisher:
+		position = position.lerp(target_pos, 0.1)
 
 func publish():
 	var data = {
@@ -78,5 +84,5 @@ func _on_subscribe_completed(result: int, response_code: int, headers: PackedStr
 		sender.queue_free()
 
 func set_position_rotation(pos_x: float, pos_y: float, pos_z: float, rot_y: float):
-	position = Vector3(pos_x, pos_y, pos_z)
+	target_pos = Vector3(pos_x, pos_y, pos_z)
 	rotation.y = rot_y
